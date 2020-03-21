@@ -1,0 +1,12 @@
+{% extends 'base_layout.html' %}
+{% load static %}
+
+{% block content %}
+{% for item in context %}
+<h1>{{item.name}}</h1>
+
+{{ item.slug}}
+
+{% endfor %}
+
+{% endblock %}

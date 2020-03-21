@@ -1,1 +1,3 @@
 # Blog
+
+This is a very simple Blog website. I made this only for learning Django framework better. this done some basic django staffs like login, signup, creating blog, comment on blog, reset password, forgotten password etc...........
