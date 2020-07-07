@@ -1,0 +1,152 @@
+{% extends 'base.html' %} {% load static %}
+
+<!--Head-->
+{% block extrahead %}
+
+<title> Donation </title>
+<meta name="viewport" content="width=device-width, initial-scale=1,">
+<meta name="author" content="colorlib">
+<meta name="description" content="">
+<meta name="keywords" content="">
+<meta charset="UTF-8">
+
+
+<link rel="stylesheet" type="text/css" href="{% static 'CreateAccount/css/util.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'CreateAccount/css/main.css' %}">
+
+
+<!---->
+{% endblock extrahead %} {% block content %}
+
+<div class="features">
+    <div class="container">
+        <!--<div class="section_title">About Universal Help Hub</div>-->
+        <div class="site-main-container">
+            <div class="container-contact100" id="donation">
+                <div class="wrap-contact100">
+                    <form class="contact100-form validate-form" method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <span class="contact100-form-title">
+                            Sign Up
+                        </span>
+
+
+                        <!---->
+                        {% if messages %} {% for message in messages %}
+                        <div class="alert alert-warning" role="alert">
+                            {{ message }}
+                        </div>
+                        {% endfor %} {% endif %}
+
+
+                        <label class="label-input100" for="phone">Profile Photo</label>
+                        <div class="wrap-input100">
+                            <div class="file-upload">
+                                <div class="file-select">
+                                    <div class="file-select-button" id="fileName">Choose File</div>
+                                    <div class="file-select-name" id="noFile">No file chosen...</div>
+                                    {{form.Image}}
+                                </div>
+                            </div>
+                            <span class="focus-input100"></span>
+                        </div>
+
+                        <label class="label-input100" for="Full_Name">Full Name *</label>
+                        <div class="wrap-input100">
+                            {{form.Full_Name}}
+                            <span class="focus-input100"></span>
+                        </div>
+
+                        <label class="label-input100" for="username">Username *</label>
+                        <div class="wrap-input100">
+                            {{form.username}}
+                            <span class="focus-input100"></span>
+                        </div>
+
+                        <div style="color: rgb(243, 9, 9); font-size: 11px;">
+                            {{ form.username.errors}}
+                        </div>
+
+                        <label class="label-input100" for="email">Enter your email *</label>
+                        <div class="wrap-input100 validate-input" data-validate="Valid email is required: ex@abc.xyz">
+                            {{form.email}}
+                            <span class="focus-input100"></span>
+                        </div>
+                        <div style="color: rgb(243, 9, 9); font-size: 11px;">
+                            {{ form.email.errors}}
+                        </div>
+
+
+                        <label class="label-input100" for="age">Age</label>
+                        <div class="wrap-input100">
+                            {{form.Age}}
+                            <span class="focus-input100"></span>
+                        </div>
+
+
+
+                        <label class="label-input100" for="occupation">Occupation</label>
+                        <div class="wrap-input100">
+                            {{form.Occupation}}
+                            <span class="focus-input100"></span>
+                        </div>
+
+                        <label class="label-input100" for="password">Password</label>
+                        <div class="wrap-input100">
+                            {{form.password1}}
+                            <span class="focus-input100"></span>
+                        </div>
+
+
+                        <label class="label-input100" for="confirm_password">Confirm Password</label>
+                        <div class="wrap-input100">
+                            {{form.password2}}
+                            <span class="focus-input100"></span>
+                        </div>
+
+                        <div style="color: rgb(243, 9, 9); font-size: 11px;">
+                            {{ form.password2.errors}}
+                        </div>
+
+
+                        <div class="container-contact100-form-btn">
+                            <button class="contact100-form-btn">
+                                Send
+                            </button>
+                        </div>
+
+                    </form>
+
+                    <div class="contact100-more flex-col-c-m" style="background-image: url('/static/CreateAccount/images/dn.jpg');">
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+{% endblock content %}{% block Category %} {% endblock %}
+<!---->
+
+{% block extrascript %}
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script>
+    $('#chooseFile').bind('change', function() {
+        var filename = $("#chooseFile").val();
+        if (/^\s*$/.test(filename)) {
+            $(".file-upload").removeClass('active');
+            $("#noFile").text("No file chosen...");
+        } else {
+            $(".file-upload").addClass('active');
+            $("#noFile").text(filename.replace("C:\\fakepath\\", ""));
+        }
+    });
+</script>
+
+{% endblock extrascript %}

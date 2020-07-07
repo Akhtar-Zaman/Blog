@@ -1,0 +1,85 @@
+{% extends 'base.html' %} {% load static %} {% block content %}
+<div class="col-xl-8 py-5 px-md-5">
+    <div class="row pt-md-4">
+        {% for post in object_list %}
+        <div class="col-md-12">
+            <div class="blog-entry ftco-animate d-md-flex">
+                <a href="{% url 'FullArticle' post.id %}" class="img img-2" style="background-image: url('{{post.Image.url}}');"></a>
+                <div class="text text-2 pl-md-4">
+                    <h3 class="mb-2"><a href="{% url 'FullArticle' post.id %}">{{post.Title}}</a></h3>
+                    <div class="meta-wrap">
+                        <p class="meta">
+                            <span><i class="icon-calendar mr-2"></i>{{post.Date}}</span>
+                            <span><a href="single.html"><i class="icon-folder-o mr-2"></i>{{post.Categorry}}</a></span>
+                            <span><i class="icon-comment2 mr-2"></i>{{post.Author}}</span>
+                        </p>
+                    </div>
+                    <p class="mb-4">{{post.snippet}}</p>
+                    <p><a href="{% url 'FullArticle' post.id %}" class="btn-custom">Read More <span class="ion-ios-arrow-forward"></span></a></p>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+
+    </div>
+    <!-- END-->
+
+
+
+
+
+    <div class="row">
+        <div class="col">
+
+            <div class="block-27">
+
+                {% if Blog_Posts.has_other_pages %}
+                <ul>
+                    {% if Blog_Posts.has_previous %}
+                    <li><a href="?page={{ Blog_Posts.previous_page_number }}">&lt;</a></li>
+                    {% else %}
+                    <li class="disabled"><span>&lt;</span></li>
+                    {% endif %} {% for i in Blog_Posts.paginator.page_range %} {% if Blog_Posts.number == i %}
+
+                    <li class="active"><span>{{ i }}</span></li>
+                    {% else %}
+                    <li><a href="?page={{ i }}">{{ i }}</a></li>
+                    {% endif %} {% endfor %} {% if Blog_Posts.has_next %}
+                    <li><a href="?page={{ Blog_Posts.next_page_number }}">&gt;</a></li>
+                    {% else %}
+                    <li class="disabled"><span>&gt;</span></li> {% endif %}
+                </ul>
+
+
+
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="col-xl-4 sidebar ftco-animate bg-light pt-5">
+    <div class="sidebar-box pt-md-4">
+        <form action="#" class="search-form">
+            <div class="form-group">
+                <span class="icon icon-search"></span>
+                <input type="text" class="form-control" placeholder="Type a keyword and hit enter">
+            </div>
+        </form>
+    </div>
+    <div class="sidebar-box ftco-animate">
+        <h3 class="sidebar-heading">Categories</h3>
+        <ul class="categories">
+            <li><a href="#">Fashion <span>(6)</span></a></li>
+            <li><a href="#">Technology <span>(8)</span></a></li>
+            <li><a href="#">Travel <span>(2)</span></a></li>
+            <li><a href="#">Food <span>(2)</span></a></li>
+            <li><a href="#">Photography <span>(7)</span></a></li>
+        </ul>
+    </div>
+
+
+
+</div>
+{% endblock content %}

@@ -1,0 +1,132 @@
+{% extends 'base.html' %} {% load static %}
+
+<!--Head-->
+{% block extrahead %}
+
+<title> Donation </title>
+<meta name="viewport" content="width=device-width, initial-scale=1,">
+<meta name="author" content="colorlib">
+<meta name="description" content="">
+<meta name="keywords" content="">
+<meta charset="UTF-8">
+
+
+<link rel="stylesheet" type="text/css" href="{% static 'CreateAccount/css/util.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'CreateAccount/css/main.css' %}">
+
+
+<!---->
+{% endblock extrahead %} {% block content %}
+
+<div class="features">
+    <div class="container">
+        <!--<div class="section_title">About Universal Help Hub</div>-->
+        <div class="site-main-container">
+            <div class="container-contact100" id="donation">
+                <div class="wrap-contact100">
+                    <form class="contact100-form validate-form" method="POST">
+                        {% csrf_token %}
+                        <span class="contact100-form-title">
+                            Donate Us
+                        </span>
+
+
+                        <label class="label-input100" for="phone">Profile Photo</label>
+                        <div class="wrap-input100">
+                            <div class="file-upload">
+                                <div class="file-select">
+                                    <div class="file-select-button" id="fileName">Choose File</div>
+                                    <div class="file-select-name" id="noFile">No file chosen...</div>
+                                    <input type="file" name="chooseFile" id="chooseFile">
+                                </div>
+                            </div>
+                            <span class="focus-input100"></span>
+                        </div>
+
+                        <label class="label-input100" for="Full_Name">Full Name *</label>
+                        <div class="wrap-input100">
+                            <input id="Full_Name" class="input100" type="text" name="Full_Name" placeholder="Full Name">
+                            <span class="focus-input100"></span>
+                        </div>
+
+                        <label class="label-input100" for="username">Username *</label>
+                        <div class="wrap-input100">
+                            <input id="username" class="input100" type="text" name="username" placeholder="Username">
+                            <span class="focus-input100"></span>
+                        </div>
+
+                        <label class="label-input100" for="email">Enter your email *</label>
+                        <div class="wrap-input100 validate-input" data-validate="Valid email is required: ex@abc.xyz">
+                            <input id="email" class="input100" type="text" name="email" placeholder="Eg. example@email.com">
+                            <span class="focus-input100"></span>
+                        </div>
+
+
+                        <label class="label-input100" for="age">Age</label>
+                        <div class="wrap-input100">
+                            <input id="age" class="input100" type="text" name="age" placeholder=" 18 yrs">
+                            <span class="focus-input100"></span>
+                        </div>
+
+
+
+                        <label class="label-input100" for="occupation">Occupation</label>
+                        <div class="wrap-input100">
+                            <input id="occupation" class="input100" type="text" name="occupation" placeholder=" Student">
+                            <span class="focus-input100"></span>
+                        </div>
+
+                        <label class="label-input100" for="password">Password</label>
+                        <div class="wrap-input100">
+                            <input id="password" class="input100" type="password" name="password" placeholder=" abcd-123">
+                            <span class="focus-input100"></span>
+                        </div>
+
+
+                        <label class="label-input100" for="confirm_password">Confirm Password</label>
+                        <div class="wrap-input100">
+                            <input id="confirm_password" class="input100" type="password" name="confirm_password" placeholder=" abcd-123">
+                            <span class="focus-input100"></span>
+                        </div>
+
+                        <div class="container-contact100-form-btn">
+                            <button class="contact100-form-btn">
+                                Send
+                            </button>
+                        </div>
+
+                    </form>
+
+                    <div class="contact100-more flex-col-c-m" style="background-image: url('/static/CreateAccount/images/dn.jpg');">
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+{% endblock content %}{% block Category %} {% endblock %}
+<!---->
+
+{% block extrascript %}
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script>
+    $('#chooseFile').bind('change', function() {
+        var filename = $("#chooseFile").val();
+        if (/^\s*$/.test(filename)) {
+            $(".file-upload").removeClass('active');
+            $("#noFile").text("No file chosen...");
+        } else {
+            $(".file-upload").addClass('active');
+            $("#noFile").text(filename.replace("C:\\fakepath\\", ""));
+        }
+    });
+</script>
+
+{% endblock extrascript %}

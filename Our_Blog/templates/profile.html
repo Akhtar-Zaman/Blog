@@ -1,0 +1,142 @@
+{% load static %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+    <link rel="stylesheet" href="{% static 'css/profile.css' %}">
+    <link rel="stylesheet" href="{% static 'css/readmore.css' %}">
+</head>
+
+<body>
+
+
+
+    <div class="container">
+        <div class="row profile">
+            <div class="col-md-3">
+                <div class="profile-sidebar">
+                    <!-- SIDEBAR USERPIC -->
+                    <div class="profile-userpic">
+                        <img src="{{ user.Image.url }}" class="img-responsive" alt="">
+                    </div>
+                    <!-- END SIDEBAR USERPIC -->
+                    <!-- SIDEBAR USER TITLE -->
+                    <div class="profile-usertitle">
+                        <div class="profile-usertitle-name">
+                            {{ user.username }}
+                        </div>
+                        <div class="profile-usertitle-job">
+                            Developer
+                        </div>
+                    </div>
+                    <!-- END SIDEBAR USER TITLE -->
+                    <!-- SIDEBAR BUTTONS -->
+                    <div class="profile-userbuttons">
+                        <button type="button" class="btn btn-success btn-sm">Follow</button>
+                        <button type="button" class="btn btn-danger btn-sm">Message</button>
+                    </div>
+                    <!-- END SIDEBAR BUTTONS -->
+                    <!-- SIDEBAR MENU -->
+                    <div class="profile-usermenu">
+                        <ul class="nav">
+                            <li class="active">
+                                <a href="http://127.0.0.1:8000/articles/index/">
+                                    <i class="glyphicon glyphicon-home"></i> Home </a>
+                            </li>
+                            <li>
+                                <a href="http://127.0.0.1:8000/accounts/change_password/">
+                                    <i class="glyphicon glyphicon-user"></i> Change Password </a>
+                            </li>
+                            <li>
+                                <a href="http://127.0.0.1:8000/accounts/reset-password/" target="_blank">
+                                    <i class="glyphicon glyphicon-ok"></i> Reset Passord </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <i class="glyphicon glyphicon-flag"></i> Help </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- END MENU -->
+                </div>
+            </div>
+            <div class="col-md-9">
+                <div class="profile-content">
+
+                    <table class="table">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Title</th>
+                                <th scope="col">Date</th>
+                                <th scope="col">Update</th>
+                                <th scope="col">Delete</th>
+                            </tr>
+                        </thead>
+                        {% for articles in logedin_user_articles %}
+                        <tbody>
+                            <tr>
+                                <th scope="row">1</th>
+                                <td>{{ articles.Title }}</td>
+                                <td>{{ articles.Date }}</td>
+                                <td>
+                                    <a href="/articles/update/{{ articles.id }}"><button type="button" class="btn btn-success btn-sm">Update</button></a>
+                                </td>
+                                <td>
+                                    <a class="btn btn-danger btn-sm trigger_popup_fricc">Delete</a>
+                                </td>
+                            </tr>
+
+                        </tbody>
+
+                        <div class="hover_bkgr_fricc">
+                            <span class="helper"></span>
+                            <div>
+                                <div class="popupCloseButton">&times;</div>
+                                <h3>Are you sure ? </h3>
+                                <p class="mb-4 "> dlete</p>
+
+                                <a href="/articles/delete/{{ articles.id }}"><button type="submit" class="btn btn-danger btn-sm">Delete</button></a>
+                                <a href="http://127.0.0.1:8000/accounts/profile/"><button type="button" class="btn btn-success btn-sm">Cancel</button></a>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </table>
+
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+    <br>
+
+    <script>
+        $(document).ready(function() {
+            $(".trigger_popup_fricc").click(function() {
+                $('.hover_bkgr_fricc').show();
+            });
+            /*$('.hover_bkgr_fricc').click(function() {
+                $('.hover_bkgr_fricc').hide();
+            });*/
+            $('.popupCloseButton').click(function() {
+                $('.hover_bkgr_fricc').hide();
+            });
+        });
+    </script>
+
+</body>
+
+</html>
