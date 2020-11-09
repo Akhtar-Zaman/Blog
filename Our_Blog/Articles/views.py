@@ -60,7 +60,7 @@ def Blog_Articles_By_Category(request, id):
         Blog_Posts = paginator.page(1)
     except EmptyPage:
         Blog_Posts = paginator.page(paginator.num_pages)
-    return render (request, 'travel.html', {'Blog_Posts':Blog_Posts})
+    return render (request, 'Articles_by_category.html', {'Blog_Posts':Blog_Posts})
 
 
 
